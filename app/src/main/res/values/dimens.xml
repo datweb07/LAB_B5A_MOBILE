@@ -1,0 +1,4 @@
+<resources>
+    <dimen name="student_button_margin">4dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+</resources>

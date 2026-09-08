@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Student Board</string>
+    <string name="board_title">Student board</string>
+    <string name="empty_board">Choose New from the menu to add a student.</string>
+
+    <string name="menu_new">New</string>
+    <string name="new_student">New student</string>
+    <string name="student_id">ID</string>
+    <string name="student_name">Name</string>
+    <string name="student_age">Age</string>
+    <string name="add">Add</string>
+    <string name="clear">Clear</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="id_required">ID is required.</string>
+    <string name="id_exists">This ID already exists.</string>
+    <string name="name_required">Name is required.</string>
+    <string name="age_required">Enter a valid age.</string>
+    <string name="age_range">Age must be from 1 to 150.</string>
+
+    <string name="select_color">Select color</string>
+    <string name="default_color_selected">No student button has focus. This color will be used for new buttons.</string>
+    <string name="color_picker_closed">Color picker closed.</string>
+
+    <string name="student_details">Student details</string>
+    <string name="detail_id">ID: %1$s</string>
+    <string name="detail_name">Name: %1$s</string>
+    <string name="detail_age">Age: %1$d</string>
+
+    <string name="about_title">About</string>
+    <string name="about_message">Application: Student Board\nAuthor: THANH DAT</string>
+    <string name="ok">OK</string>
+</resources>
