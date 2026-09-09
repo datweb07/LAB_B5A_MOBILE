@@ -8,6 +8,12 @@
     android:paddingEnd="24dp"
     android:paddingBottom="8dp">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ID"
+        android:textColor="#333333"
+        android:textStyle="bold" />
     <EditText
         android:id="@+id/edit_student_id"
         android:layout_width="match_parent"
@@ -17,6 +23,13 @@
         android:inputType="text"
         android:maxLines="1" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Name"
+        android:textColor="#333333"
+        android:textStyle="bold" />
     <EditText
         android:id="@+id/edit_student_name"
         android:layout_width="match_parent"
@@ -26,14 +39,19 @@
         android:inputType="textPersonName"
         android:maxLines="1" />
 
-    <EditText
-        android:id="@+id/edit_student_age"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/student_age"
-        android:imeOptions="actionDone"
-        android:inputType="number"
-        android:maxLines="1" />
+        android:layout_marginTop="8dp"
+        android:text="Age"
+        android:textColor="#333333"
+        android:textStyle="bold" />
+    <NumberPicker
+        android:id="@+id/np_student_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -46,6 +64,7 @@
             android:id="@+id/button_clear_student"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/design_default_color_error"
             android:text="@string/clear" />
 
         <Button
@@ -53,6 +72,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:backgroundTint="@color/black"
             android:text="@string/add" />
     </LinearLayout>
 

@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.TextView;
+import android.widget.NumberPicker;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -69,13 +70,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showNewStudentDialog() {
-        View dialogView = LayoutInflater.from(this)
-                .inflate(R.layout.dialog_new_student, null);
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_new_student, null);
         EditText idInput = dialogView.findViewById(R.id.edit_student_id);
         EditText nameInput = dialogView.findViewById(R.id.edit_student_name);
-        EditText ageInput = dialogView.findViewById(R.id.edit_student_age);
+        NumberPicker agePicker = dialogView.findViewById(R.id.np_student_age);
         Button addButton = dialogView.findViewById(R.id.button_add_student);
         Button clearButton = dialogView.findViewById(R.id.button_clear_student);
+
+        agePicker.setMinValue(1);
+        agePicker.setMaxValue(150);
+        agePicker.setValue(20);
 
         AlertDialog dialog = new AlertDialog.Builder(this)
                 .setTitle(R.string.new_student)
@@ -86,14 +90,14 @@ public class MainActivity extends AppCompatActivity {
         clearButton.setOnClickListener(view -> {
             idInput.setText("");
             nameInput.setText("");
-            ageInput.setText("");
+            agePicker.setValue(20);
             idInput.requestFocus();
         });
 
         addButton.setOnClickListener(view -> {
             String id = idInput.getText().toString().trim();
             String name = nameInput.getText().toString().trim();
-            String ageText = ageInput.getText().toString().trim();
+            int age = agePicker.getValue();
 
             if (TextUtils.isEmpty(id)) {
                 idInput.setError(getString(R.string.id_required));
@@ -108,21 +112,6 @@ public class MainActivity extends AppCompatActivity {
             if (TextUtils.isEmpty(name)) {
                 nameInput.setError(getString(R.string.name_required));
                 nameInput.requestFocus();
-                return;
-            }
-
-            int age;
-            try {
-                age = Integer.parseInt(ageText);
-            } catch (NumberFormatException exception) {
-                ageInput.setError(getString(R.string.age_required));
-                ageInput.requestFocus();
-                return;
-            }
-
-            if (age < 1 || age > 150) {
-                ageInput.setError(getString(R.string.age_range));
-                ageInput.requestFocus();
                 return;
             }
 
