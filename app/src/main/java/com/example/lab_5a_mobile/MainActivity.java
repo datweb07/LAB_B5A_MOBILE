@@ -1,6 +1,7 @@
 package com.example.lab_5a_mobile;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -173,7 +174,11 @@ public class MainActivity extends AppCompatActivity {
         studentButton.setOnClickListener(view -> {
             selectedStudentButton = (Button) view;
             selectedStudentButton.requestFocusFromTouch();
-            startActivity(StudentDetailActivity.createIntent(this, student));
+            Intent intent = new Intent(MainActivity.this, StudentDetailActivity.class);
+            intent.putExtra(StudentDetailActivity.EXTRA_ID, student.getId());
+            intent.putExtra(StudentDetailActivity.EXTRA_NAME, student.getName());
+            intent.putExtra(StudentDetailActivity.EXTRA_AGE, student.getAge());
+            startActivity(intent);
         });
 
         studentBoard.addView(studentButton);

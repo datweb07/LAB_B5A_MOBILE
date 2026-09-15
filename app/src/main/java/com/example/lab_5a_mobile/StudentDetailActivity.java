@@ -9,17 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class StudentDetailActivity extends AppCompatActivity {
 
-    private static final String EXTRA_ID = "student_id";
-    private static final String EXTRA_NAME = "student_name";
-    private static final String EXTRA_AGE = "student_age";
-
-    public static Intent createIntent(Context context, Student student) {
-        Intent intent = new Intent(context, StudentDetailActivity.class);
-        intent.putExtra(EXTRA_ID, student.getId());
-        intent.putExtra(EXTRA_NAME, student.getName());
-        intent.putExtra(EXTRA_AGE, student.getAge());
-        return intent;
-    }
+    public static final String EXTRA_ID = "student_id";
+    public static final String EXTRA_NAME = "student_name";
+    public static final String EXTRA_AGE = "student_age";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
