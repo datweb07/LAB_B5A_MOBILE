@@ -161,24 +161,39 @@ public class MainActivity extends AppCompatActivity {
         params.setMargins(margin, margin, margin, margin);
         studentButton.setLayoutParams(params);
 
-        studentButton.setOnFocusChangeListener((view, hasFocus) -> {
-            if (hasFocus) {
-                if (selectedStudentButton != null && selectedStudentButton != view) {
-                    selectedStudentButton.setAlpha(0.85f);
-                }
-                selectedStudentButton = (Button) view;
-                selectedStudentButton.setAlpha(1.0f);
-            }
-        });
+        studentButton.setOnClickListener(new android.view.View.OnClickListener() {
+            private long lastClickTime = 0;
 
-        studentButton.setOnClickListener(view -> {
-            selectedStudentButton = (Button) view;
-            selectedStudentButton.requestFocusFromTouch();
-            Intent intent = new Intent(MainActivity.this, StudentDetailActivity.class);
-            intent.putExtra(StudentDetailActivity.EXTRA_ID, student.getId());
-            intent.putExtra(StudentDetailActivity.EXTRA_NAME, student.getName());
-            intent.putExtra(StudentDetailActivity.EXTRA_AGE, student.getAge());
-            startActivity(intent);
+            @Override
+            public void onClick(android.view.View view) {
+                long clickTime = System.currentTimeMillis();
+                if (clickTime - lastClickTime < 300) {
+                    // Double Click
+                    android.content.Intent intent = new android.content.Intent(MainActivity.this, StudentDetailActivity.class);
+                    intent.putExtra(StudentDetailActivity.EXTRA_ID, student.getId());
+                    intent.putExtra(StudentDetailActivity.EXTRA_NAME, student.getName());
+                    intent.putExtra(StudentDetailActivity.EXTRA_AGE, student.getAge());
+                    startActivity(intent);
+                } else {
+                    // Single Click
+                    if (selectedStudentButton == view) {
+                        // Unfocus
+                        view.setAlpha(0.85f);
+                        selectedStudentButton = null;
+                        view.clearFocus();
+                    } else {
+                        // Focus
+                        if (selectedStudentButton != null) {
+                            selectedStudentButton.setAlpha(0.85f);
+                            selectedStudentButton.clearFocus();
+                        }
+                        selectedStudentButton = (Button) view;
+                        selectedStudentButton.setAlpha(1.0f);
+                        view.requestFocusFromTouch();
+                    }
+                }
+                lastClickTime = clickTime;
+            }
         });
 
         studentBoard.addView(studentButton);
